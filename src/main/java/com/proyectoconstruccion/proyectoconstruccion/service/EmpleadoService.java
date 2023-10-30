@@ -30,4 +30,7 @@ public class EmpleadoService{
         return empleadorepo.findAll();
     }
     
+    public void eliminar(Empleado emp){
+        empleadorepo.delete(emp);
+    }
 }
