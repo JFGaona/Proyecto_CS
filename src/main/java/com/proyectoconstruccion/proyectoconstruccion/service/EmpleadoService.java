@@ -1,13 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.proyectoconstruccion.proyectoconstruccion.service;
+
+import com.proyectoconstruccion.proyectoconstruccion.entity.Empleado;
+import com.proyectoconstruccion.proyectoconstruccion.repo.EmpleadoRepo;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Jonathan
  */
-public class EmpleadoService {
+
+@Service
+public class EmpleadoService{
+    
+    @Autowired
+    private EmpleadoRepo empleadorepo;
+    
+    public Empleado insertar(Empleado emp){
+        return empleadorepo.save(emp);
+    }
+    
+    public Empleado actualizar(Empleado emp){
+        return empleadorepo.save(emp);
+    }
+    
+    public List<Empleado> listar(){
+        return empleadorepo.findAll();
+    }
     
 }
