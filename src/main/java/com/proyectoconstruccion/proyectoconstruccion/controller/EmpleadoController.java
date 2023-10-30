@@ -5,6 +5,7 @@ import com.proyectoconstruccion.proyectoconstruccion.entity.Empleado;
 import com.proyectoconstruccion.proyectoconstruccion.service.EmpleadoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -40,5 +41,8 @@ public class EmpleadoController {
         return empleadoservice.actualizar(emp);
     }
     
-    
+    @DeleteMapping
+    public void eliminar(@RequestBody Empleado emp){
+        empleadoservice.eliminar(emp);
+    }
 }
