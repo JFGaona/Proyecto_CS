@@ -2,6 +2,11 @@
 package com.proyectoconstruccion.proyectoconstruccion.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.util.Date;
 
 /**
  *
@@ -9,6 +14,16 @@ import jakarta.persistence.Entity;
  */
 
 @Entity
+@Table(name = "Empleado")
 public class Empleado {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
+    private String nombre;
+    private String apellidos;
+    private Integer edad;
+    private String telefono;
+    private Date fecha_nacimiento;
     
 }
