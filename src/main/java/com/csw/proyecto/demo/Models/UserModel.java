@@ -5,8 +5,8 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="usuario")
-public class Usuario {
+@Table(name = "usuario")
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
