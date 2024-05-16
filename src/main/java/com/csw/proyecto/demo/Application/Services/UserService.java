@@ -1,4 +1,4 @@
-package com.csw.proyecto.demo.Services;
+package com.csw.proyecto.demo.Application.Services;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.csw.proyecto.demo.Models.UserModel;
-import com.csw.proyecto.demo.Repositories.IUserRepository;
+import com.csw.proyecto.demo.Domain.Models.UserModel;
+import com.csw.proyecto.demo.Infrastructure.Repositories.IUserRepository;
 
 @Service
 public class UserService {

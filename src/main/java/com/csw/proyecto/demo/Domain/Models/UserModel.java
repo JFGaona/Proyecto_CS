@@ -1,4 +1,4 @@
-package com.csw.proyecto.demo.Models;
+package com.csw.proyecto.demo.Domain.Models;
 
 import java.sql.Date;
 import jakarta.persistence.Entity;
