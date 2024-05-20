@@ -1,49 +1,49 @@
 package com.csw.proyecto.demo.Application.Services;
 
-import java.util.ArrayList;
+import com.csw.proyecto.demo.Domain.Models.UserModel;
+import com.csw.proyecto.demo.Domain.Ports.In.CreateUserUseCase;
+import com.csw.proyecto.demo.Domain.Ports.In.DeleteUserUseCase;
+import com.csw.proyecto.demo.Domain.Ports.In.RetrieveUserUseCase;
+import com.csw.proyecto.demo.Domain.Ports.In.UpdateUserUseCase;
+
+import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+public class UserService implements CreateUserUseCase, DeleteUserUseCase, RetrieveUserUseCase, UpdateUserUseCase {
 
-import com.csw.proyecto.demo.Domain.Models.UserModel;
-import com.csw.proyecto.demo.Infrastructure.Repositories.IUserRepository;
+    private final CreateUserUseCase createUserUseCase;
+    private final DeleteUserUseCase deleteUserUseCase;
+    private final RetrieveUserUseCase retrieveUserUseCase;
+    private final UpdateUserUseCase updateUserUseCase;
 
-@Service
-public class UserService {
-    @Autowired
-    IUserRepository userRepository;
-
-    public ArrayList<UserModel> getUsers() {
-        return (ArrayList<UserModel>) userRepository.findAll();
+    public UserService(CreateUserUseCase createUserUseCase,RetrieveUserUseCase retrieveUserUseCase, DeleteUserUseCase deleteUserUseCase, UpdateUserUseCase updateUserUseCase){
+        this.createUserUseCase = createUserUseCase;
+        this.retrieveUserUseCase = retrieveUserUseCase;
+        this.deleteUserUseCase = deleteUserUseCase;
+        this.updateUserUseCase = updateUserUseCase;
+    }
+    @Override
+    public UserModel createUser(UserModel userModel) {
+        return createUserUseCase.createUser(userModel);
     }
 
-    public UserModel saveUser(UserModel user) {
-        return userRepository.save(user);
+    @Override
+    public boolean deleteUser(Long id) {
+        return deleteUserUseCase.deleteUser(id);
     }
 
-    public Optional<UserModel> getById(Long id) {
-        return userRepository.findById(id);
+    @Override
+    public Optional<UserModel> getUser(Long id) {
+        return retrieveUserUseCase.getUser(id);
     }
 
-    public UserModel updateById(UserModel request, Long id) {
-        UserModel user = userRepository.findById(id).get();
-
-        user.setNombre(request.getNombre());
-        user.setEmail(request.getEmail());
-        user.setContraseña(request.getContraseña());
-        user.setFechacreacion(request.getFechacreacion());
-
-        return user;
-
+    @Override
+    public List<UserModel> getAllUsers() {
+        return retrieveUserUseCase.getAllUsers();
     }
 
-    public Boolean deleteUser(Long id) {
-        try {
-            userRepository.deleteById(id);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    @Override
+    public Optional<UserModel> updateUser(Long id, UserModel updateUser) {
+        return updateUserUseCase.updateUser(id, updateUser);
     }
 }
